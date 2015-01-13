@@ -40,6 +40,7 @@ else // UDP packet
     var server_name = buffer_read(rx_buff, buffer_string)
     if not global.connected
     {
+        show_debug_message("Connecting to server at: "+ip_addr_rx)
         global.ip_addr_server = ip_addr_rx
         network_connect( global.socket_client, global.ip_addr_server, 6511 )
         global.connected = true
