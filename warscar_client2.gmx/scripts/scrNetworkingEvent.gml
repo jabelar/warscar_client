@@ -2,11 +2,11 @@
 
 // show_debug_message("networking event occurred")
 
-var socket_id = ds_map_find_value( async_load, "id" )
-var network_event_type = ds_map_find_value(async_load, "type")
-var port = ds_map_find_value(async_load, "port")
-var ip_addr_rx = ds_map_find_value(async_load, "ip")
-var rx_buff = ds_map_find_value(async_load, "buffer")
+var socket_id = ds_map_find_value( async_load, "id" );
+var network_event_type = ds_map_find_value(async_load, "type");
+var port = ds_map_find_value(async_load, "port");
+var ip_addr_rx = ds_map_find_value(async_load, "ip");
+var rx_buff = ds_map_find_value(async_load, "buffer");
 // show_debug_message("Packet received from ip ="+string(ip_addr_rx)+", socket id ="+string(socket_id)+", port ="+string(port))
 
 if socket_id == global.socket_client // TCP packet incoming
@@ -17,13 +17,15 @@ if socket_id == global.socket_client // TCP packet incoming
     }
     else
     {
-        packet_type = buffer_read(rx_buff, buffer_u8)
+        var packet_type = buffer_read(rx_buff, buffer_u8)
         switch packet_type
         {
             case OBJ_POS:
             {
-                player1_x = buffer_read(rx_buff, buffer_s32)
-                player1_y = buffer_read(rx_buff, buffer_s32)
+                player_x[PLAYER1]= buffer_read(rx_buff, buffer_s32)
+                player_y[PLAYER1] = buffer_read(rx_buff, buffer_s32)
+                player_x[PLAYER2]= buffer_read(rx_buff, buffer_s32)
+                player_y[PLAYER2] = buffer_read(rx_buff, buffer_s32)
                 break;
             }
             default: // unrecognized packet type

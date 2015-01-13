@@ -1,23 +1,27 @@
-if gamepad_button_check(1, gp_padd) then player_y += 8
-if gamepad_button_check(1, gp_padu) then player_y -= 8
-if gamepad_button_check(1, gp_padr) then player_x += 8
-if gamepad_button_check(1, gp_padl) then player_x -= 8
+key_up = false
+key_down = false
+key_right = false
+key_left = false
+key_weapon = false
 
-if player_x > room0.room_width then player_x = 0
-if player_x < 0 then player_x = room0.room_width
-if player_y > room0.room_height then player_y = 0
-if player_y < 0 then player_y = room0.room_height
-
-object1.x = player1_x
-object1.y = player1_y
-object2.x = player_x
-object2.y =player_y
+if gamepad_button_check(1, gp_padd) then key_down = true 
+if gamepad_button_check(1, gp_padu) then key_up = true 
+if gamepad_button_check(1, gp_padr) then key_right = true 
+if gamepad_button_check(1, gp_padl) then key_left = true 
+key_weapon = gamepad_button_check(1, gp_shoulderr) or gamepad_button_check(1, gp_shoulderrb)
 
 
-
+objPlayer1.x = player_x[PLAYER1]
+objPlayer1.y = player_y[PLAYER1]
+objPlayer2.x = player_x[PLAYER2]
+objPlayer2.y = player_y[PLAYER2]
 
 buffer_seek(tx_buff_client, buffer_seek_start, 0)
-buffer_write(tx_buff_client, buffer_u8, 1) // position update
-buffer_write(tx_buff_client, buffer_s32, player_x)
-buffer_write(tx_buff_client, buffer_s32, player_y)
+buffer_write(tx_buff_client, buffer_u8, INPUT) // player input
+buffer_write(tx_buff_client, buffer_bool, key_up)
+buffer_write(tx_buff_client, buffer_bool, key_down)
+buffer_write(tx_buff_client, buffer_bool, key_right)
+buffer_write(tx_buff_client, buffer_bool, key_left)
+buffer_write(tx_buff_client, buffer_bool, key_weapon)
+
 network_send_packet( global.socket_client, tx_buff_client, buffer_tell(tx_buff_client) )

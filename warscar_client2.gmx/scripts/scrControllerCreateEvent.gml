@@ -15,9 +15,15 @@ tx_buff_client = buffer_create( 256, buffer_grow, 1)
 show_debug_message("Creating listener to listen for server broadcasts")
 global.socket_listener = network_create_server(network_socket_udp, 6511, 3)
 
-player1_x = room0.room_width/4
-player1_y = room0.room_height/2
-player_x = room0.room_width/2
-player_y = room0.room_height/2
+player_x[PLAYER1] = room0.room_width/4
+player_y[PLAYER1] = room0.room_height/2
+player_x[PLAYER2] = room0.room_width/2
+player_y[PLAYER2] = room0.room_height/2
+
+key_up = false
+key_down = false
+key_right = false
+key_left = false
+key_weapon = false
 
 global.connected = false
