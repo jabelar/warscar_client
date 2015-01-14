@@ -17,7 +17,7 @@ if socket_id == global.socket_client // TCP packet incoming
     }
     else
     {
-        var packet_type = buffer_read(rx_buff, buffer_u8)
+        var packet_type = buffer_read(rx_buff, buffer_u8);
         switch packet_type
         {
             case OBJ_POS:
@@ -27,8 +27,27 @@ if socket_id == global.socket_client // TCP packet incoming
                 player_y[PLAYER1] = buffer_read(rx_buff, buffer_s32)
                 player_x[PLAYER2]= buffer_read(rx_buff, buffer_s32)
                 player_y[PLAYER2] = buffer_read(rx_buff, buffer_s32)
-                show_debug_message("Received data packet from server, player_x[PLAYER1] = "+string(player_x[PLAYER1]))
-                show_debug_message("Received data packet from server, player_x[PLAYER2] = "+string(player_x[PLAYER2]))  
+                // show_debug_message("Received data packet from server, player_x[PLAYER1] = "+string(player_x[PLAYER1]))
+                // show_debug_message("Received data packet from server, player_x[PLAYER2] = "+string(player_x[PLAYER2]))  
+                break;
+            }
+            case OBJ_CREATE:
+            {
+                var obj_type = buffer_read(rx_buff, buffer_u8);
+                switch obj_type
+                {
+                    case OBSTACLE:
+                    {
+                        obj_x = buffer_read(rx_buff, buffer_s32)
+                        obj_y = buffer_read(rx_buff, buffer_s32)
+                        instance_create(obj_x, obj_y, objObstacle)
+                        break;
+                    }
+                    default: // unrecognized object type
+                    {
+                        show_debug_message("Unrecognized object type")
+                    }
+                }
                 break;
             }
             default: // unrecognized packet type

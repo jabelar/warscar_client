@@ -14,3 +14,9 @@ EFFECT_CREATE = 4
 // packet types to server
 globalvar INPUT;
 INPUT = 0
+
+// object types
+globalvar OBSTACLE, FLAG, BULLET;
+OBSTACLE = 0
+FLAG = 1
+BULLET = 2
