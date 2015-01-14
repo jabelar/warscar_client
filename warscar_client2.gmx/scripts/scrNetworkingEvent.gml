@@ -20,7 +20,7 @@ if socket_id == global.socket_client // TCP packet incoming
         var packet_type = buffer_read(rx_buff, buffer_u8);
         switch packet_type
         {
-            case OBJ_POS:
+            case PLAYER_POS:
             {
 
                 player_x[PLAYER1]= buffer_read(rx_buff, buffer_s32)
@@ -50,11 +50,29 @@ if socket_id == global.socket_client // TCP packet incoming
                         instance_create(obj_x, obj_y, objObstacle)
                         break;
                     }
+                   default: // unrecognized object type
+                    {
+                        show_debug_message("Unrecognized object type")
+                    }
+                }
+                break;
+            }
+            case OBJ_CREATE_SPEED_DIR:
+            {
+                var obj_type = buffer_read(rx_buff, buffer_u8);
+                switch obj_type
+                {
                     case BULLET:
                     {
-                        obj_x = buffer_read(rx_buff, buffer_s32)
-                        obj_y = buffer_read(rx_buff, buffer_s32)
-                        instance_create(obj_x, obj_y, objBullet)
+                        var obj_x = buffer_read(rx_buff, buffer_s32);
+                        var obj_y = buffer_read(rx_buff, buffer_s32);
+                        var obj_speed = buffer_read(rx_buff, buffer_s32);
+                        var obj_dir = buffer_read(rx_buff, buffer_s32);
+                        new_instance = instance_create(obj_x, obj_y, objBullet)
+                        new_instance.speed = obj_speed
+                        new_instance.direction = obj_dir
+                        new_instance.image_angle = obj_dir
+                        show_debug_message("Bullet created at "+string(new_instance.x)+", "+string(new_instance.y))
                         break;
                     }
                    default: // unrecognized object type
