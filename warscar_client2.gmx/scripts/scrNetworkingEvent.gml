@@ -38,16 +38,20 @@ if socket_id == global.socket_client // TCP packet incoming
                 {
                     case OBSTACLE:
                     {
-                        obj_x = buffer_read(rx_buff, buffer_s32)
-                        obj_y = buffer_read(rx_buff, buffer_s32)
-                        instance_create(obj_x, obj_y, objObstacle)
+                        var obj_id = buffer_read(rx_buff, buffer_u32)
+                        var obj_x = buffer_read(rx_buff, buffer_s32)
+                        var obj_y = buffer_read(rx_buff, buffer_s32)
+                        var new_instance = instance_create(obj_x, obj_y, objObstacle);
+                        ds_map_add(object_map, obj_id, new_instance) // track server to client object mapping
                         break;
                     }
                      case FLAG:
                     {
-                        obj_x = buffer_read(rx_buff, buffer_s32)
-                        obj_y = buffer_read(rx_buff, buffer_s32)
-                        instance_create(obj_x, obj_y, objObstacle)
+                        var obj_id = buffer_read(rx_buff, buffer_u32)
+                        var obj_x = buffer_read(rx_buff, buffer_s32)
+                        var obj_y = buffer_read(rx_buff, buffer_s32)
+                        var new_instance = instance_create(obj_x, obj_y, objObstacle);
+                        ds_map_add(object_map, obj_id, new_instance) // track server to client object mapping
                         break;
                     }
                    default: // unrecognized object type
@@ -62,17 +66,14 @@ if socket_id == global.socket_client // TCP packet incoming
                 var obj_type = buffer_read(rx_buff, buffer_u8);
                 switch obj_type
                 {
+                    case OBSTACLE:
+                    {
+                        scrCreateObject(rx_buff, objObstacle)
+                        break;
+                    }
                     case BULLET:
                     {
-                        var obj_x = buffer_read(rx_buff, buffer_s32);
-                        var obj_y = buffer_read(rx_buff, buffer_s32);
-                        var obj_speed = buffer_read(rx_buff, buffer_s32);
-                        var obj_dir = buffer_read(rx_buff, buffer_s32);
-                        new_instance = instance_create(obj_x, obj_y, objBullet)
-                        new_instance.speed = obj_speed
-                        new_instance.direction = obj_dir
-                        new_instance.image_angle = obj_dir
-                        show_debug_message("Bullet created at "+string(new_instance.x)+", "+string(new_instance.y))
+                        scrCreateObject(rx_buff, objBullet)
                         break;
                     }
                    default: // unrecognized object type

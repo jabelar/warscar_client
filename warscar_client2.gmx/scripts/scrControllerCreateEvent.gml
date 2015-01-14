@@ -27,3 +27,5 @@ key_left = false
 key_weapon = false
 
 global.connected = false
+
+object_map = ds_map_create() // maps object ids on server to client
