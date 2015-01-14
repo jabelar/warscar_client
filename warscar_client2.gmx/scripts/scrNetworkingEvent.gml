@@ -22,11 +22,13 @@ if socket_id == global.socket_client // TCP packet incoming
         {
             case OBJ_POS:
             {
+
                 player_x[PLAYER1]= buffer_read(rx_buff, buffer_s32)
                 player_y[PLAYER1] = buffer_read(rx_buff, buffer_s32)
                 player_x[PLAYER2]= buffer_read(rx_buff, buffer_s32)
                 player_y[PLAYER2] = buffer_read(rx_buff, buffer_s32)
-                break;
+                show_debug_message("Received data packet from server, player_x[PLAYER1] = "+string(player_x[PLAYER1]))
+                show_debug_message("Received data packet from server, player_x[PLAYER2] = "+string(player_x[PLAYER2]))                break;
             }
             default: // unrecognized packet type
             {
