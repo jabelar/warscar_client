@@ -1,7 +1,7 @@
 // players
 globalvar PLAYER1, PLAYER2;
 PLAYER1 = 0
-PLAYER2 = 0
+PLAYER2 = 1
 
 // packet types from server
 globalvar OBJ_CREATE, OBJ_POS, OBJ_DESTROY, SOUND_PLAY, EFFECT_CREATE;
