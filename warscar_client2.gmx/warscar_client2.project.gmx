@@ -9,6 +9,7 @@
     <sprite>sprites\sprite0</sprite>
     <sprite>sprites\sprite1</sprite>
     <sprite>sprites\sprObstacle</sprite>
+    <sprite>sprites\sprBullet</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -23,6 +24,7 @@
     <object>objects\object0</object>
     <object>objects\objPlayer1</object>
     <object>objects\objPlayer2</object>
+    <object>objects\objBullet</object>
     <object>objects\objObstacle</object>
   </objects>
   <rooms name="rooms">

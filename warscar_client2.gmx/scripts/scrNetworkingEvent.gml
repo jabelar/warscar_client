@@ -43,7 +43,21 @@ if socket_id == global.socket_client // TCP packet incoming
                         instance_create(obj_x, obj_y, objObstacle)
                         break;
                     }
-                    default: // unrecognized object type
+                     case FLAG:
+                    {
+                        obj_x = buffer_read(rx_buff, buffer_s32)
+                        obj_y = buffer_read(rx_buff, buffer_s32)
+                        instance_create(obj_x, obj_y, objObstacle)
+                        break;
+                    }
+                    case BULLET:
+                    {
+                        obj_x = buffer_read(rx_buff, buffer_s32)
+                        obj_y = buffer_read(rx_buff, buffer_s32)
+                        instance_create(obj_x, obj_y, objBullet)
+                        break;
+                    }
+                   default: // unrecognized object type
                     {
                         show_debug_message("Unrecognized object type")
                     }
