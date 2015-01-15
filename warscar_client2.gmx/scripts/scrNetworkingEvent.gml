@@ -58,6 +58,11 @@ if socket_id == global.socket_client // TCP packet incoming
                 scrDestroyObject(rx_buff)
                 break;
             }
+            case EFFECT_CREATE:
+            {
+                scrCreateEffect(rx_buff)
+                break;
+            }
             default: // unrecognized packet type
             {
                 show_debug_message("Unrecognized packet type")

@@ -19,6 +19,7 @@
     <script>scripts\scrControllerStepEvent.gml</script>
     <script>scripts\scrControllerDialogEvent.gml</script>
     <script>scripts\scrCreateObject.gml</script>
+    <script>scripts\scrCreateEffect.gml</script>
     <script>scripts\scrDestroyObject.gml</script>
     <script>scripts\scrNetworkingEvent.gml</script>
   </scripts>
