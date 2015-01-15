@@ -53,6 +53,11 @@ if socket_id == global.socket_client // TCP packet incoming
                 }
                 break;
             }
+            case OBJ_DESTROY:
+            {
+                scrDestroyObject(rx_buff)
+                break;
+            }
             default: // unrecognized packet type
             {
                 show_debug_message("Unrecognized packet type")
