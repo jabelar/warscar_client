@@ -38,36 +38,6 @@ if socket_id == global.socket_client // TCP packet incoming
                 {
                     case OBSTACLE:
                     {
-                        var obj_id = buffer_read(rx_buff, buffer_u32)
-                        var obj_x = buffer_read(rx_buff, buffer_s32)
-                        var obj_y = buffer_read(rx_buff, buffer_s32)
-                        var new_instance = instance_create(obj_x, obj_y, objObstacle);
-                        ds_map_add(object_map, obj_id, new_instance) // track server to client object mapping
-                        break;
-                    }
-                     case FLAG:
-                    {
-                        var obj_id = buffer_read(rx_buff, buffer_u32)
-                        var obj_x = buffer_read(rx_buff, buffer_s32)
-                        var obj_y = buffer_read(rx_buff, buffer_s32)
-                        var new_instance = instance_create(obj_x, obj_y, objObstacle);
-                        ds_map_add(object_map, obj_id, new_instance) // track server to client object mapping
-                        break;
-                    }
-                   default: // unrecognized object type
-                    {
-                        show_debug_message("Unrecognized object type")
-                    }
-                }
-                break;
-            }
-            case OBJ_CREATE_SPEED_DIR:
-            {
-                var obj_type = buffer_read(rx_buff, buffer_u8);
-                switch obj_type
-                {
-                    case OBSTACLE:
-                    {
                         scrCreateObject(rx_buff, objObstacle)
                         break;
                     }
