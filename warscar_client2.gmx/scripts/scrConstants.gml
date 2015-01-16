@@ -20,3 +20,7 @@ globalvar OBSTACLE, FLAG, BULLET;
 OBSTACLE = 0
 FLAG = 1
 BULLET = 2
+
+// sound types
+globalvar MAIN_GUN;
+MAIN_GUN = 0

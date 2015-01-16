@@ -63,6 +63,11 @@ if socket_id == global.socket_client // TCP packet incoming
                 scrCreateEffect(rx_buff)
                 break;
             }
+            case SOUND_PLAY:
+            {
+                scrPlaySound(rx_buff)
+                break;
+            }
             default: // unrecognized packet type
             {
                 show_debug_message("Unrecognized packet type")
@@ -72,17 +77,5 @@ if socket_id == global.socket_client // TCP packet incoming
 }
 else // UDP packet
 {
-    var server_name = buffer_read(rx_buff, buffer_string)
-    if not global.connected
-    {
-        show_debug_message("Connecting to server at: "+ip_addr_rx)
-        global.ip_addr_server = ip_addr_rx
-        network_connect( global.socket_client, global.ip_addr_server, 6511 )
-        global.connected = true
-
-        //ip_query_id = show_question_async("Want to connect to server ="+server_name+"?")
-    }
-
-    show_debug_message("Server broadcast received from "+ip_addr_rx+", name is "+server_name);
-    
+    scrProcessReceivedUDP(rx_buffer)    
 }
