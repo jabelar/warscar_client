@@ -77,5 +77,5 @@ if socket_id == global.socket_client // TCP packet incoming
 }
 else // UDP packet
 {
-    scrProcessReceivedUDP(rx_buffer)    
+    scrProcessReceivedUDP(rx_buff, ip_addr_rx)    
 }
