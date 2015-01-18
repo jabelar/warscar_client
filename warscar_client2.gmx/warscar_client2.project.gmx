@@ -21,6 +21,7 @@
     <script>scripts\scrControllerStepEvent.gml</script>
     <script>scripts\scrControllerDialogEvent.gml</script>
     <script>scripts\scrCreateObject.gml</script>
+    <script>scripts\scrCreatePlayer.gml</script>
     <script>scripts\scrCreateEffect.gml</script>
     <script>scripts\scrPlaySound.gml</script>
     <script>scripts\scrDestroyObject.gml</script>
@@ -31,6 +32,8 @@
     <object>objects\object0</object>
     <object>objects\objPlayer1</object>
     <object>objects\objPlayer2</object>
+    <object>objects\objPlayer3</object>
+    <object>objects\objPlayer4</object>
     <object>objects\objBullet</object>
     <object>objects\objObstacle</object>
   </objects>

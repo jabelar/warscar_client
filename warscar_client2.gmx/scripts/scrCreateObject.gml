@@ -11,4 +11,3 @@ new_instance.direction = obj_dir
 new_instance.image_angle = obj_dir
 ds_map_add(object_map, obj_id, new_instance) // track server to client object mapping
 show_debug_message("Object created for server id = "+string(obj_id)+", client id = "+string(new_instance))
-
