@@ -7,3 +7,4 @@ with client_obj_id
 }
 ds_map_delete(object_map, server_obj_id) // track server to client object mapping
 show_debug_message("Object deleted for server id = "+string(server_obj_id)+", client id = "+string(client_obj_id))
+

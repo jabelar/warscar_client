@@ -23,14 +23,10 @@ if socket_id == global.socket_client // TCP packet incoming
             case PLAYER_POS:
             {
 
-                objPlayer1.x = buffer_read(rx_buff, buffer_s32)
-                objPlayer1.y = buffer_read(rx_buff, buffer_s32)
-                objPlayer2.x = buffer_read(rx_buff, buffer_s32)
-                objPlayer2.y = buffer_read(rx_buff, buffer_s32)
-                objPlayer3.x = buffer_read(rx_buff, buffer_s32)
-                objPlayer3.y = buffer_read(rx_buff, buffer_s32)
-                objPlayer4.x = buffer_read(rx_buff, buffer_s32)
-                objPlayer4.y = buffer_read(rx_buff, buffer_s32)
+                player_x[PLAYER1]= buffer_read(rx_buff, buffer_s32)
+                player_y[PLAYER1] = buffer_read(rx_buff, buffer_s32)
+                player_x[PLAYER2]= buffer_read(rx_buff, buffer_s32)
+                player_y[PLAYER2] = buffer_read(rx_buff, buffer_s32)
                 // show_debug_message("Received data packet from server, player_x[PLAYER1] = "+string(player_x[PLAYER1]))
                 // show_debug_message("Received data packet from server, player_x[PLAYER2] = "+string(player_x[PLAYER2]))  
                 break;
@@ -70,11 +66,6 @@ if socket_id == global.socket_client // TCP packet incoming
             case SOUND_PLAY:
             {
                 scrPlaySound(rx_buff)
-                break;
-            }
-            case PLAYER_CREATE:
-            {
-                scrCreatePlayer(rx_buff)
                 break;
             }
             default: // unrecognized packet type
