@@ -8,4 +8,4 @@ var new_instance = instance_create(player_x, player_y, player_obj[player_id]);
 new_instance.speed = player_speed
 new_instance.direction = player_dir
 new_instance.image_angle = player_dir
-show_debug_message("Player created for player "+string(player_id+1))
+show_debug_message("Player created for player "+string(player_id+1)
